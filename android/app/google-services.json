@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "368769921958",
+    "project_id": "hotel-assistant-6d0c9",
+    "storage_bucket": "hotel-assistant-6d0c9.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:368769921958:android:0c6059d03b972c458ad567",
+        "android_client_info": {
+          "package_name": "com.example.hotel_assistant"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBJvu9zNC04XlTYgI5U6S3SujbanC70x7E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

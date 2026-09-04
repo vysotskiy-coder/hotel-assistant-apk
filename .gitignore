@@ -1,0 +1,41 @@
+﻿# Flutter
+.dart_tool/
+.packages
+.pub/
+build/
+.flutter-plugins
+.flutter-plugins-dependencies
+.flutter_tool_state
+
+# Android
+android/.gradle/
+android/local.properties
+android/key.properties
+android/app/debug/
+android/app/profile/
+android/app/release/
+
+# Firebase
+firebase-debug.log
+firebase-debug.*.log
+
+# Node
+functions/node_modules/
+
+# IDE
+.idea/
+.vscode/
+*.iml
+
+# Windows
+Thumbs.db
+Desktop.ini
+
+# Project backup/archive files
+*.zip
+*.bak
+*.backup
+
+# Temporary / diagnostic backup source files
+*.before_*
+*.diagnostic_backup
