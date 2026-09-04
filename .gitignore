@@ -43,3 +43,11 @@ Desktop.ini
 # Backup source files
 *.backup_final
 *_WORKING_*.dart
+
+# Release signing key
+android/keystore/*.jks
+android/keystore/*.keystore
+android/key.properties
+
+# Local signing configuration
+android/key.properties
