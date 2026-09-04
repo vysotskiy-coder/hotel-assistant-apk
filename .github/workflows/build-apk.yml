@@ -18,7 +18,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Setup Java
-        uses: actions/setup-java@v4
+        uses: actions/setup-java@v5
         with:
           distribution: temurin
           java-version: '17'
@@ -54,15 +54,34 @@ jobs:
           echo "Version: $NAME"
           echo "Build: $BUILD"
 
-      - name: Create GitHub Release
+      - name: Create or Update GitHub Release
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          TAG="v${{ steps.version.outputs.name }}"
+          TAG="v${{ steps.version.outputs.name }}-build${{ steps.version.outputs.build }}"
 
-          gh release create "$TAG" \
-            "build/app/outputs/flutter-apk/app-release.apk" \
+          echo "Release tag: $TAG"
+
+          if gh release view "$TAG" --repo "${{ github.repository }}" > /dev/null 2>&1; then
+            echo "Release already exists. Replacing APK..."
+
+            gh release upload "$TAG" \
+              "build/app/outputs/flutter-apk/app-release.apk" \
+              --repo "${{ github.repository }}" \
+              --clobber
+          else
+            echo "Creating new Release..."
+
+            gh release create "$TAG" \
+              "build/app/outputs/flutter-apk/app-release.apk" \
+              --repo "${{ github.repository }}" \
+              --title "Hotel Assistant ${{ steps.version.outputs.name }} Build ${{ steps.version.outputs.build }}" \
+              --notes "Automatic APK build. Version ${{ steps.version.outputs.name }}, Build ${{ steps.version.outputs.build }}." \
+              --target "${{ github.sha }}"
+          fi
+
+          echo "Release URL:"
+          gh release view "$TAG" \
             --repo "${{ github.repository }}" \
-            --title "Hotel Assistant ${{ steps.version.outputs.name }}" \
-            --notes "Automatic APK build. Build ${{ steps.version.outputs.build }}." \
-            --target "${{ github.sha }}"
+            --json url \
+            --jq '.url'
