@@ -39,3 +39,7 @@ Desktop.ini
 # Temporary / diagnostic backup source files
 *.before_*
 *.diagnostic_backup
+
+# Backup source files
+*.backup_final
+*_WORKING_*.dart
